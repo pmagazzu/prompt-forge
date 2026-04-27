@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Forge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header>
+      <h1>Prompt Forge</h1>
+      <p class="subtitle">Craft · Store · Copy</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="library">Library</button>
+      <button class="tab" data-tab="builder">Builder</button>
+      <button class="tab" data-tab="characters">Characters</button>
+      <button class="tab" data-tab="scenes">Scenes</button>
+      <button class="tab" data-tab="styles">Styles</button>
+      <button class="tab" data-tab="settings">Settings</button>
+    </nav>
+
+    <!-- Library Tab -->
+    <section id="library" class="tab-content active">
+      <div class="toolbar">
+        <input type="text" id="search-input" placeholder="Search prompts...">
+        <select id="tag-filter">
+          <option value="">All Tags</option>
+        </select>
+        <button id="new-prompt-btn" class="btn-primary">+ New Prompt</button>
+      </div>
+      <div id="prompt-list" class="card-grid"></div>
+    </section>
+
+    <!-- Builder Tab -->
+    <section id="builder" class="tab-content">
+      <div class="builder-container">
+        <div class="builder-left">
+          <h3>Template Variables</h3>
+          <p class="hint">Use {braces} to insert variables</p>
+          
+          <div class="variable-section">
+            <label>Character</label>
+            <select id="var-character"><option value="">Select character...</option></select>
+          </div>
+          <div class="variable-section">
+            <label>Scene/Setting</label>
+            <select id="var-scene"><option value="">Select scene...</option></select>
+          </div>
+          <div class="variable-section">
+            <label>Time Period</label>
+            <select id="var-timeperiod"><option value="">Select period...</option></select>
+          </div>
+          <div class="variable-section">
+            <label>Style</label>
+            <select id="var-style"><option value="">Select style...</option></select>
+          </div>
+          <div class="variable-section">
+            <label>Mood</label>
+            <select id="var-mood"><option value="">Select mood...</option></select>
+          </div>
+        </div>
+
+        <div class="builder-right">
+          <h3>Prompt Preview</h3>
+          <textarea id="prompt-text" placeholder="Type your prompt here... Use {character}, {scene}, {style}, etc."></textarea>
+          <div class="preview-output">
+            <h4>Resolved Prompt</h4>
+            <div id="resolved-prompt" class="resolved-box"></div>
+          </div>
+          <div class="builder-actions">
+            <button id="copy-prompt-btn" class="btn-primary">Copy to Clipboard</button>
+            <button id="save-prompt-btn" class="btn-secondary">Save to Library</button>
+          </div>
+          <div class="save-fields" id="save-fields" style="display:none;">
+            <input type="text" id="prompt-title" placeholder="Prompt title...">
+            <input type="text" id="prompt-tags" placeholder="Tags (comma separated)...">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Characters Tab -->
+    <section id="characters" class="tab-content">
+      <div class="toolbar">
+        <h3>Character Library</h3>
+        <button id="new-character-btn" class="btn-primary">+ Add Character</button>
+      </div>
+      <div id="character-list" class="card-grid"></div>
+    </section>
+
+    <!-- Scenes Tab -->
+    <section id="scenes" class="tab-content">
+      <div class="toolbar">
+        <h3>Scene Library</h3>
+        <button id="new-scene-btn" class="btn-primary">+ Add Scene</button>
+      </div>
+      <div id="scene-list" class="card-grid"></div>
+    </section>
+
+    <!-- Styles Tab -->
+    <section id="styles" class="tab-content">
+      <div class="toolbar">
+        <h3>Style Presets</h3>
+        <button id="new-style-btn" class="btn-primary">+ Add Style</button>
+      </div>
+      <div id="style-list" class="card-grid"></div>
+    </section>
+
+    <!-- Settings Tab -->
+    <section id="settings" class="tab-content">
+      <h3>Settings</h3>
+      <div class="settings-group">
+        <button id="export-all-btn" class="btn-secondary">Export All Data (JSON)</button>
+        <button id="import-all-btn" class="btn-secondary">Import Data (JSON)</button>
+        <input type="file" id="import-file" accept=".json" style="display:none;">
+      </div>
+      <div class="settings-group">
+        <button id="clear-all-btn" class="btn-danger">Clear All Data</button>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h3 id="modal-title"></h3>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" style="display:none;"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
