@@ -212,6 +212,7 @@ function renderCharacterList() {
   
   list.innerHTML = characters.map(char => `
     <div class="card">
+      ${char.generated ? '<span class="char-badge">⚡ Generated</span>' : ''}
       <h4>${escapeHtml(char.name)}</h4>
       <p>${escapeHtml(char.description.substring(0, 100))}${char.description.length > 100 ? '...' : ''}</p>
       <div class="card-actions">
@@ -669,6 +670,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Character CRUD
   document.getElementById('new-character-btn').addEventListener('click', () => openCharacterModal());
+  document.getElementById('generate-character-btn').addEventListener('click', () => openCharacterGeneratorModal());
+  document.getElementById('generate-character-btn').addEventListener('click', () => openCharacterGeneratorModal());
   
   // Scene CRUD
   document.getElementById('new-scene-btn').addEventListener('click', () => openSceneModal());
